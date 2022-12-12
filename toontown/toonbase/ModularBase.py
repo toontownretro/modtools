@@ -187,7 +187,7 @@ class ModularBase(ToonBase.ToonBase):
         This requires a local server to be up and running.
         """
         if base.cr is None:
-            self.notify.error("startHeadlessShow(): You forgot to call base.initCR() first!")
+            self.notify.error("startConnection(): You forgot to call base.initCR() first!")
             return
 
         gameServer = '127.0.0.1'
