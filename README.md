@@ -1,3 +1,6 @@
+### Notice
+This branch is the barebones version of the modtools library. 
+
 # Installation
 
 - git clone this in your player directory
