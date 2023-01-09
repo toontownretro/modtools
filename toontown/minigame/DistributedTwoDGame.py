@@ -1,3 +1,8 @@
+import random
+from direct.fsm import State
+from modtools.tkpanels.FSMInspector import FSMInspector
+
+
 from modtools.toontown.toonbase import ModularStart
 from modtools.toontown.toonbase.ModularBase import ModularBase
 
@@ -14,9 +19,6 @@ base.localAvatar.laffMeter = None
 
 
 # client side init
-import random
-from direct.fsm import State
-
 base.cr.playGame.hood = base.cr.playGame
 base.cr.playGame.hood.fsm.addState(
     State.State('minigame')
@@ -212,9 +214,8 @@ def generateSections(szId=2000):
 
 generateSections()
 targetClient.sectionsSelected = sectionsSelected  # given by the AI
-
-# putting everything together
 targetClient.load()
+
 targetClient.onstage()
 targetClient.setGameReady()
 targetClient.setGameStart(1)
