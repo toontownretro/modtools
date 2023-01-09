@@ -2,7 +2,7 @@
 FakeDCClass: Headless blackhole-tunnel for DO sendUpdate calls
 
 Basically the equivalent of /dev/null; if a DO tries to send a sendUpdate, ensure that this is defined beforehand:
-from tools.headless.distributed import NoDCClass
+from modtools.distributed import NoDCClass
 DistributedObjectClass.dclass = NoDCClass.NoDCClass()
 
 """
