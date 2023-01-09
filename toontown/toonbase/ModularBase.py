@@ -30,7 +30,7 @@ from toontown.toonbase import ToonBase
 class ModularBase(ToonBase.ToonBase):
     def __init__(self, pipe = 'pandagl', wantHotkeys=True):
         self.selectedPipe = pipe
-        ToonBase.ToonBase.__init__(self)
+        ToonBase.ToonBase.__init__(self, self.selectedPipe)
 
         self.modular = True
 
@@ -241,6 +241,9 @@ class ModularBase(ToonBase.ToonBase):
         base.localAvatar.generate()
 
     def initMarginManager(self):
+        # We need a node to be the parent of all of the 2-d onscreen
+        # messages along the margins.  This should be in front of many
+        # things, but not all things.
         self.marginManager = MarginManager()
         self.margins = self.aspect2d.attachNewNode(self.marginManager, DirectGuiGlobals.MIDGROUND_SORT_INDEX + 1)
         mm = self.marginManager
