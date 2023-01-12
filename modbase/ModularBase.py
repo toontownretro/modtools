@@ -13,10 +13,8 @@ from direct.showbase.PythonUtil import *
 from toontown.toonbase import ToontownGlobals
 from direct.directnotify import DirectNotifyGlobal
 from toontown.toonbase  import ToontownLoader
-from toontown.toonbase.ToontownPostProcess import ToontownPostProcess
 from direct.gui import DirectGuiGlobals
 from direct.gui.DirectGui import *
-from toontown.toonbase.ToontownModules import *
 import sys
 import os
 import math
@@ -24,8 +22,14 @@ import math
 from toontown.toonbase import TTLocalizer
 from toontown.toonbase import ToontownBattleGlobals
 from toontown.launcher import ToontownDownloadWatcher
-from toontown.effects.PlanarReflector import PlanarReflector
 from toontown.toonbase import ToonBase
+
+try:
+    from toontown.toonbase.ToontownModules import *
+    from toontown.effects.PlanarReflector import PlanarReflector
+    from toontown.toonbase.ToontownPostProcess import ToontownPostProcess
+except:
+    pass
 
 class ModularBase(ToonBase.ToonBase):
     def __init__(self, pipe = 'pandagl', wantHotkeys=True):
@@ -37,8 +41,12 @@ class ModularBase(ToonBase.ToonBase):
         # TODO: CLEANUP LATER
 
         if not config.GetInt('ignore-user-options', 0):
-            self.settings = ToontownSettings.ToontownSettings()
-            self.loadFromSettings()
+            try:
+                self.settings = ToontownSettings.ToontownSettings()
+                self.loadFromSettings()
+            except Exception as e:
+                print(e)
+                self.settings = None
         else:
             self.settings = None
 
