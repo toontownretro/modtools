@@ -30,6 +30,14 @@ import sys
 import random
 from panda3d.core import *
 
+"""
+You may need to edit this file depending on where your prc file is located.
+"""
+loadPrcFile('etc/Configrc.prc')
+loadPrcFileData("", "model-path resources")
+loadPrcFileData("", "default-model-extension .bam")
+
+
 # See if we have a launcher, if we do not, make an empty one
 try:
     launcher
@@ -59,7 +67,14 @@ print('ToontownStart: Game2 is finished.')
 # Ok, now we know we are clear from the flash into, fire it up
 print('ToontownStart: Starting the game.')
 
-from toontown.toonbase.ToontownModules import *
+# depending on what your build is, we may or may need these guys:
+try:
+    from otp.otpbase.OTPModules import *
+    # Toontown specific modules
+    from panda3d.toontown import *
+except:
+    pass
+
 from panda3d.core import Loader as PandaLoader
 
 if launcher.isDummy():
