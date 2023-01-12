@@ -181,6 +181,7 @@ class ModularBase(ToonBase.ToonBase):
         self.oldX = max(1, base.win.getXSize())
         self.oldY = max(1, base.win.getYSize())
         self.aspectRatio = float(self.oldX) / self.oldY
+        self.vfs = VirtualFileSystem.getGlobalPtr()
 
     def initCR(self, serverVersion = 'tto-dev'):
         """
